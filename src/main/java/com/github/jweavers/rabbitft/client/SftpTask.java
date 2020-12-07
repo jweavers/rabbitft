@@ -1,4 +1,4 @@
-package com.rabbitft.client;
+package com.github.jweavers.rabbitft.client;
 
 import java.io.File;
 import java.io.FileInputStream;

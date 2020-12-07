@@ -1,4 +1,4 @@
-package com.rabbitft.client;
+package com.github.jweavers.rabbitft.client;
 
 import java.io.File;
 import java.util.List;
@@ -8,12 +8,12 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import org.apache.log4j.Logger;
 
+import com.github.jweavers.rabbitft.Constants;
+import com.github.jweavers.rabbitft.RabbitFT;
+import com.github.jweavers.rabbitft.server.SftpContext;
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
-import com.rabbitft.Constants;
-import com.rabbitft.RabbitFT;
-import com.rabbitft.server.SftpContext;
 
 /**
  * @author ravi

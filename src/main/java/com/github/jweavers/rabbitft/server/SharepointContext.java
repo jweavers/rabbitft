@@ -1,6 +1,6 @@
-package com.rabbitft.server;
+package com.github.jweavers.rabbitft.server;
 
-import com.rabbitft.Constants;
+import com.github.jweavers.rabbitft.Constants;
 
 /**
  * @author ravi

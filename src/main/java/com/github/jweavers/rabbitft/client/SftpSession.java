@@ -1,4 +1,4 @@
-package com.rabbitft.client;
+package com.github.jweavers.rabbitft.client;
 
 import org.apache.log4j.Logger;
 

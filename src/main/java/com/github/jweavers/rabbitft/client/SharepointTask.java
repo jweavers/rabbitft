@@ -1,4 +1,4 @@
-package com.rabbitft.client;
+package com.github.jweavers.rabbitft.client;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -11,7 +11,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.log4j.Logger;
 
-import com.rabbitft.Constants;
+import com.github.jweavers.rabbitft.Constants;
 
 /**
  * @author ravi

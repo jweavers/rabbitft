@@ -1,4 +1,4 @@
-package com.rabbitft.client;
+package com.github.jweavers.rabbitft.client;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,10 +16,10 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 
+import com.github.jweavers.rabbitft.Constants;
+import com.github.jweavers.rabbitft.RabbitFT;
+import com.github.jweavers.rabbitft.server.SharepointContext;
 import com.google.gson.Gson;
-import com.rabbitft.Constants;
-import com.rabbitft.RabbitFT;
-import com.rabbitft.server.SharepointContext;
 
 /**
  * @author ravi

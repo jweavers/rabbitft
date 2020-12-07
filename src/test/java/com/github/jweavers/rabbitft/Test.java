@@ -1,4 +1,4 @@
-package com.rabbitft;
+package com.github.jweavers.rabbitft;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,10 +7,11 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.rabbitft.client.FileTransfer;
-import com.rabbitft.server.ConnectionContext;
-import com.rabbitft.server.SftpContext;
-import com.rabbitft.server.SharepointContext;
+import com.github.jweavers.rabbitft.RabbitFT;
+import com.github.jweavers.rabbitft.client.FileTransfer;
+import com.github.jweavers.rabbitft.server.ConnectionContext;
+import com.github.jweavers.rabbitft.server.SftpContext;
+import com.github.jweavers.rabbitft.server.SharepointContext;
 
 public class Test {
 

@@ -1,4 +1,4 @@
-package com.rabbitft;
+package com.github.jweavers.rabbitft;
 
 /**
  * @author ravi
