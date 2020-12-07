@@ -15,14 +15,14 @@ import com.rabbitft.server.SharepointContext;
 public class Test {
 
 	public static void main(String[] args) throws IOException {
-		// https://amadeusworkplace-my.sharepoint.com/personal/ravikant_sharma2_amadeus_com/_layouts/15/user.aspx
-		String server_loc = "amadeusworkplace-my.sharepoint.com/personal/ravikant_sharma2_amadeus_com";
+		// https://<sharepoint_domain>/_layouts/15/user.aspx
+		String server_loc = "<sharepoint_domain>";
 		String upload_folder = "POC";
-		String client = "b3b9e9f9-055d-4e4e-960b-7c8df5385e3d";
-		String secret = "2ADMRQnjuHWjsyo6geyGFitHaqqBrVYpBMZxxK9E8wI=";
-		String bearer = "b3f4f7c2-72ce-4192-aba4-d6c7719b5766";
+		String client = "b3b9e9f9-055d-4e";
+		String secret = "2ADMRQnjuHWjsyo6geyGFit";
+		String bearer = "b3f4f7c2-72ce-4192-";
 		ConnectionContext ctx = new SftpContext("192.168.0.101", 22, "ravi", "/Users/ravi/Desktop/sftp2/",
-				"Ravisharma@90".getBytes());
+				"xxxxyz".getBytes());
 				
 		RabbitFT postmaster = FileTransfer.newChannelInstance(ctx);
 		postmaster.setConsoleDebugMode(true);
