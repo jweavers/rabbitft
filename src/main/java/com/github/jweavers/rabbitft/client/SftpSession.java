@@ -9,6 +9,7 @@ import com.jcraft.jsch.Session;
 class SftpSession {
 
 	private ChannelSftp _channelSftp;
+	private int _sessionId;
 	private final Session _sftpSession;
 	private final Channel _channel;
 	private final static Logger _logger = Logger.getLogger(SftpSession.class);
@@ -22,6 +23,7 @@ class SftpSession {
 	public ChannelSftp sftpChannel() {
 		if (_channelSftp == null)
 			_channelSftp = (ChannelSftp) _channel;
+		_sessionId = _channelSftp.getId();
 		return _channelSftp;
 	}
 
@@ -39,6 +41,6 @@ class SftpSession {
 		if (_sftpSession != null) {
 			_sftpSession.disconnect();
 		}
-		_logger.debug("Successfully disconnected session with SFTP server");
+		_logger.debug("SFTP " + _sessionId + " disconnected successfully");
 	}
 }

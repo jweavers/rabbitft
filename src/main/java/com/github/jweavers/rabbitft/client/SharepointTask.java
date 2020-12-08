@@ -50,12 +50,12 @@ class SharepointTask implements Task {
 		try {
 			String sharepointUrl = String.format(_sharepointPath, _file.getName(), _isOverwriteAllowed);
 			post = new HttpPost(sharepointUrl);
-			post.setHeader(Constants.AUTHORIZATION, String.format("Bearer %s", _accessToken));
+			post.setHeader(Constants.AUTHORIZATION, String.format(Constants.BEARER, _accessToken));
 
 			b = Files.readAllBytes(Paths.get(_file.getPath()));
 			post.setEntity(new ByteArrayEntity(b));
 			HttpResponse response = httpclient.execute(post);
-			_logger.debug(response.getStatusLine().getStatusCode() + " " + _file.getName());
+			_logger.info(response.getStatusLine().getStatusCode() + " " + _file.getName());
 		} catch (Exception e) {
 			_logger.error("Unable to process file : " + _file.getName(),e);
 		} finally {

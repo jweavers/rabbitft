@@ -1,7 +1,8 @@
 package com.github.jweavers.rabbitft;
 
 /**
- * @author ravi
+ * @author ravi 
+ * 
  * Constants defined for Rabbit File Transfer
  */
 public interface Constants {
@@ -14,4 +15,5 @@ public interface Constants {
 	String HTTPS = "https";
 	String STRICTHOSTKEYCHECKING = "StrictHostKeyChecking";
 	String SFTP = "sftp";
+	String BEARER = "Bearer %s";
 }

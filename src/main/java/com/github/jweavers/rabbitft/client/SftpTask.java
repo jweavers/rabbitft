@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
 
@@ -47,14 +46,16 @@ class SftpTask implements Task {
 				_session = _sftpConnectionPool.take();
 			}
 			ChannelSftp _channelSftp = _session.sftpChannel();
-			_channelSftp.cd(_sftpPath);
+			if (_sftpPath != null && !_sftpPath.isEmpty())
+				_channelSftp.cd(_sftpPath);
 			_logger.debug("Current directory :" + _channelSftp.pwd());
 			_logger.debug("Session connected :" + _channelSftp.isConnected());
+			_logger.debug("Uploading file " + _file.getName() +" using  session "+_channelSftp.getId());
 			_channelSftp.put(_inputStream, _file.getName());
-			_logger.debug("Uploading file to " + _file.getName());
+			_logger.info("File uploaded : " + _file.getName());
 		} catch (SftpException | IOException | InterruptedException e) {
 			_logger.error(e.getMessage(), e);
-		}finally {
+		} finally {
 			_sftpConnectionPool.add(_session);
 		}
 	}

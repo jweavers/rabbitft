@@ -6,8 +6,9 @@ import com.github.jweavers.rabbitft.server.SftpContext;
 import com.github.jweavers.rabbitft.server.SharepointContext;
 
 /**
- * @author ravi This class is responsible for creating new instance for specific
- *         transfer mode.
+ * @author ravi 
+ * This class is responsible for creating new instance for specific
+ * transfer mode.
  */
 public final class FileTransfer {
 
@@ -18,7 +19,6 @@ public final class FileTransfer {
 	 * It is responsible for creating new channel instance.
 	 * 
 	 * @param ctx, connection instance for specific channel.
-	 * @param mode define transfer mode
 	 * @return it returns new instance for specific channel instance.
 	 */
 	public static RabbitFT newChannelInstance(ConnectionContext ctx) {

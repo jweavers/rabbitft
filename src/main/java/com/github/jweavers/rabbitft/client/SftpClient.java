@@ -18,7 +18,7 @@ import com.jcraft.jsch.Session;
 /**
  * @author ravi
  * 
- *         Create SFTP client for transfer file through SFTP channel
+ *   Create SFTP client for transfer file through SFTP channel
  */
 class SftpClient extends RabbitFT {
 
@@ -99,6 +99,7 @@ class SftpClient extends RabbitFT {
 	private void init(int threads) {
 		_executorFacade = new ExecutorFacade(threads);
 		int _sftpPoolSize = _executorFacade.getThreadPoolSize();
+		//Creating pool of SFTP connection
 		while (_sftpPoolSize-- > 0) {
 			connect();
 		}
