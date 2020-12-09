@@ -9,7 +9,7 @@ Rabbit File Transfer is an open source java library for sharing file(s) over SFT
  * [Quick Start](https://github.com/jweavers/rabbitft#quick-start)
  * [Bugs](https://github.com/jweavers/rabbitft#bugs)
  * [Prerequisite for Sharepoint](https://github.com/jweavers/rabbitft/blob/main/sharepoint-connection-prerequisite.md)
- * [Copyright and license]()
+ * [Copyright and license](https://github.com/jweavers/rabbitft#copyright-and-license)
  
  ### Quick Start
  
@@ -47,7 +47,7 @@ rabbitft.upload(files);
 
 That's it ! :)
 
-To enable debug mode, just add following line before calling `upload`  :
+To enable debug mode, add following line before calling `upload`  :
 
 ```
 rabbitft.setConsoleDebugMode(true);
