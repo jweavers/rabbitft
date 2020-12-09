@@ -9,6 +9,8 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 import org.apache.log4j.RollingFileAppender;
 
+import com.github.jweavers.rabbitft.client.FileTransfer.MODE;
+
 /**
  * @author ravi
  * 
@@ -22,9 +24,45 @@ public abstract class RabbitFT {
 	private Level _fileLogging = Level.INFO;
 	private Level _consoleLogging = Level.INFO;
 
+	/**
+	 * To upload list of file(s) through specific channel. It will automatically
+	 * determine possible threads required to process all files.
+	 * 
+	 * @param files List of files, which needs to be uploaded
+	 */
 	public abstract void upload(List<File> files);
 
+	/**
+	 * 
+	 * To upload list of file(s) through specific channel with specified number of
+	 * parallalism. But, this also depend number files and available cores to
+	 * process this task.
+	 * 
+	 * @param files   - list of files, which needs to be uploaded
+	 * @param threads - number of parallel thread(s)
+	 */
 	public abstract void upload(List<File> files, int threads);
+	
+	/**
+	 * To upload list of file(s) through specific channel. It will automatically
+	 * determine possible threads required to process all files.
+	 * 
+	 * @param files List of files, which needs to be uploaded
+	 * @param mode transfer mode APPEND, OVERWITE
+	 */
+	public abstract void upload(List<File> files, MODE mode);
+
+	/**
+	 * 
+	 * To upload list of file(s) through specific channel with specified number of
+	 * parallalism. But, this also depend number files and available cores to
+	 * process this task.
+	 * 
+	 * @param files   - list of files, which needs to be uploaded
+	 * @param threads - number of parallel thread(s)
+	 * @param mode transfer mode APPEND, OVERWITE
+	 */
+	public abstract void upload(List<File> files, int threads, MODE mode);
 
 	protected void initLogging() {
 		ConsoleAppender console = new ConsoleAppender(); // create appender
@@ -48,6 +86,11 @@ public abstract class RabbitFT {
 		Logger.getRootLogger().addAppender(rollingAppender);
 	}
 
+	/**
+	 * To enable debug mode on console
+	 * 
+	 * @param flag - Set true or false, to enable to disable
+	 */
 	public void setConsoleDebugMode(boolean flag) {
 		if (flag)
 			_consoleLogging = Level.DEBUG;
@@ -55,6 +98,11 @@ public abstract class RabbitFT {
 			_consoleLogging = Level.INFO;
 	}
 
+	/**
+	 * To enable debug mode for log file
+	 * 
+	 * @param flag - Set true or false, to enable to disable
+	 */
 	public void setFileDebugMode(boolean flag) {
 		if (flag)
 			_fileLogging = Level.DEBUG;

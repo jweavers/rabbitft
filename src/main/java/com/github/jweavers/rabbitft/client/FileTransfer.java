@@ -7,10 +7,14 @@ import com.github.jweavers.rabbitft.server.SharepointContext;
 
 /**
  * @author ravi 
- * This class is responsible for creating new instance for specific
+ * This class is responsible for creating new instance for specific 
  * transfer mode.
  */
 public final class FileTransfer {
+
+	public static enum MODE {
+		OVERWRITE, APPEND
+	};
 
 	private FileTransfer() {
 	}

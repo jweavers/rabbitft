@@ -21,6 +21,7 @@ import org.apache.log4j.Logger;
 
 import com.github.jweavers.rabbitft.Constants;
 import com.github.jweavers.rabbitft.RabbitFT;
+import com.github.jweavers.rabbitft.client.FileTransfer.MODE;
 import com.github.jweavers.rabbitft.server.SharepointContext;
 import com.google.gson.Gson;
 
@@ -78,14 +79,14 @@ class SharepointClient extends RabbitFT {
 	 * upload files through sharepoint channel
 	 */
 	@Override
-	public void upload(List<File> files, int threads) {
+	public void upload(List<File> files, int threads, MODE transferMode) {
 		initLogging();
 		init(threads);
 		connect();
 		if (validatePath()) {
 			for (File file : files) {
 				_executorFacade
-						.submit(new SharepointTask(_context.isOverwriteAllowed(), file, _accessToken, _uploadService));
+						.submit(new SharepointTask(transferMode, file, _accessToken, _uploadService));
 			}
 			_logger.info("Upload request has been completed successfully.");
 		} else {
@@ -105,13 +106,6 @@ class SharepointClient extends RabbitFT {
 		_logger.debug(_sharepointPath.toString());
 	}
 
-	/**
-	 *
-	 */
-	@Override
-	public void upload(List<File> files) {
-		upload(files, files.size());
-	}
 
 	private boolean validatePath() {
 		HttpGet _httpGet = null;
@@ -132,6 +126,22 @@ class SharepointClient extends RabbitFT {
 				_httpGet.completed();
 		}
 		return _isAccessible;
+	}
+
+	@Override
+	public void upload(List<File> files, MODE transferMode) {
+		upload(files, files.size(), transferMode);
+		
+	}
+
+	@Override
+	public void upload(List<File> files, int threads) {
+		upload(files, threads, MODE.OVERWRITE);
+	}
+
+	@Override
+	public void upload(List<File> files) {
+		upload(files, files.size(), MODE.OVERWRITE);
 	}
 
 }

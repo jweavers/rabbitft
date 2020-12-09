@@ -5,6 +5,7 @@ import com.github.jweavers.rabbitft.Constants;
 /**
  * @author ravi
  *
+ * To create Sharepoint connection context
  */
 public final class SharepointContext implements ConnectionContext{
 
@@ -16,15 +17,14 @@ public final class SharepointContext implements ConnectionContext{
 	private final String _client_secret;
 	private final String _server_domain;
 	private final String _folder_path;
-	private boolean _overwriteAllowed;
 	private String _authUrl;
 
 	/**
-	 * @param client
-	 * @param secret
-	 * @param server_loc
-	 * @param upload_folder
-	 * @param bearer
+	 * @param client - Sharepoint client id
+	 * @param secret - Secret of sharepoint client
+	 * @param server_loc - Sharepoint domain i.e <i>mysharepoint.com</i>
+	 * @param upload_folder - Folder path
+	 * @param bearer - Sharepoint client tenant id.
 	 */
 	public SharepointContext(String client, String secret, String server_loc, String upload_folder, String bearer) {
 		this._client_secret = secret;
@@ -32,16 +32,15 @@ public final class SharepointContext implements ConnectionContext{
 		this._server_domain = server_loc;
 		this._client_Id = client;
 		this._folder_path = upload_folder;
-		this._overwriteAllowed = true;
 	}
 
 	/**
-	 * @param authUrl
-	 * @param client
-	 * @param secret
-	 * @param server_loc
-	 * @param upload_folder
-	 * @param bearer
+	 * @param authUrl - Url to retrieve access token for the client.
+	 * @param client - Sharepoint client id
+	 * @param secret - Secret of sharepoint client
+	 * @param server_loc - Sharepoint domain i.e <i>mysharepoint.com</i>
+	 * @param upload_folder - Folder path
+	 * @param bearer - Sharepoint client tenant id.
 	 */
 	public SharepointContext(String authUrl, String client, String secret, String server_loc, String upload_folder,
 			String bearer) {
@@ -74,13 +73,5 @@ public final class SharepointContext implements ConnectionContext{
 
 	public String getFolderPath() {
 		return _folder_path;
-	}
-
-	public void setOverwriteAllowed(boolean overwrite) {
-		this._overwriteAllowed = overwrite;
-	}
-
-	public boolean isOverwriteAllowed() {
-		return _overwriteAllowed;
 	}
 }

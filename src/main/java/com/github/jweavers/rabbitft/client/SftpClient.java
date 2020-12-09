@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 
 import com.github.jweavers.rabbitft.Constants;
 import com.github.jweavers.rabbitft.RabbitFT;
+import com.github.jweavers.rabbitft.client.FileTransfer.MODE;
 import com.github.jweavers.rabbitft.server.SftpContext;
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.JSch;
@@ -18,7 +19,7 @@ import com.jcraft.jsch.Session;
 /**
  * @author ravi
  * 
- *   Create SFTP client for transfer file through SFTP channel
+ *         Create SFTP client for transfer file through SFTP channel
  */
 class SftpClient extends RabbitFT {
 
@@ -67,12 +68,12 @@ class SftpClient extends RabbitFT {
 	 *
 	 */
 	@Override
-	public void upload(List<File> files, int threads) {
+	public void upload(List<File> files, int threads, MODE transferMode) {
 		initLogging();
 		init(threads);
 		try {
 			for (File file : files) {
-				_executorFacade.submit(new SftpTask(_sftpConnectionPool, file, _context.getSftpFolder()));
+				_executorFacade.submit(new SftpTask(transferMode, _sftpConnectionPool, file, _context.getSftpFolder()));
 			}
 			_executorFacade.close();
 		} catch (Exception e) {
@@ -86,22 +87,31 @@ class SftpClient extends RabbitFT {
 	}
 
 	/**
-	 *
-	 */
-	@Override
-	public void upload(List<File> files) {
-		upload(files, files.size());
-	}
-
-	/**
 	 * @param threads
 	 */
 	private void init(int threads) {
 		_executorFacade = new ExecutorFacade(threads);
 		int _sftpPoolSize = _executorFacade.getThreadPoolSize();
-		//Creating pool of SFTP connection
+		// Creating pool of SFTP connection
 		while (_sftpPoolSize-- > 0) {
 			connect();
 		}
+	}
+
+	@Override
+	public void upload(List<File> files, MODE transferMode) {
+		upload(files, files.size(), transferMode);
+
+	}
+
+	@Override
+	public void upload(List<File> files, int threads) {
+		upload(files, threads, MODE.OVERWRITE);
+
+	}
+	
+	@Override
+	public void upload(List<File> files) {
+		upload(files, files.size(), MODE.OVERWRITE);
 	}
 }

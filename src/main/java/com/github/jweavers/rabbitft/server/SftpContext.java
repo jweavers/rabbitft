@@ -2,7 +2,8 @@ package com.github.jweavers.rabbitft.server;
 
 /**
  * @author ravi
- *
+ * 
+ *         To create SFTP Connection context.
  */
 public class SftpContext implements ConnectionContext {
 
@@ -14,10 +15,14 @@ public class SftpContext implements ConnectionContext {
 	private String _sftpKeyPath;
 
 	/**
-	 * @param hostName
-	 * @param portNo
-	 * @param userName
-	 * @param sftpFolder
+	 * Create SFTP connection context using username and password.
+	 * 
+	 * @param hostName   - SFTP host name.
+	 * @param portNo     - SFTP port number.
+	 * @param userName   - SFTP user name.
+	 * @param sftpFolder - SFTP folder path. If require navigation to specific SFTP
+	 *                   folder. It can be blank for current directory.
+	 * @param password   - SFTP password
 	 */
 	public SftpContext(String hostName, int portNo, String userName, String sftpFolder, byte[] password) {
 		this._sftpHost = hostName;
@@ -27,6 +32,17 @@ public class SftpContext implements ConnectionContext {
 		this._sftpPassword = password;
 	}
 
+	/**
+	 * 
+	 * Create SFTP connection context using username and key.
+	 * 
+	 * @param hostName   - SFTP host name.
+	 * @param portNo     - SFTP port number.
+	 * @param userName   - SFTP user name.
+	 * @param sftpFolder - SFTP folder path. If require navigation to specific SFTP
+	 *                   folder. It can be blank for current directory.
+	 * @param keyPath    - SFTP key path
+	 */
 	public SftpContext(String hostName, int portNo, String userName, String sftpFolder, String keyPath) {
 		this._sftpHost = hostName;
 		this._sftpPort = portNo;
